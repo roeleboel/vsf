@@ -1,0 +1,36 @@
+{% extends layout.html %}
+
+{% block title %}{{ $title }}{% endblock %}
+
+{% block content %}
+<h1>Home</h1>
+<p>Welcome to the home page, list of colors:</p>
+<ul>
+    {% foreach($colors as $color): %}
+    <li>{{ $color }}</li>
+        {% if($color == "red"): %}
+        <?php echo    " <li>bliebloebla</li>"; ?>
+        {% endif; %}
+        
+    {% endforeach; %}
+</ul>
+
+<ul>
+    {% foreach($colors as $color): %}
+    <li>{{ $color }}</li>
+    {% endforeach; %}
+</ul>
+
+{% endblock %}
+
+<p>
+uit te zoeken:
+<ul>
+<li>if else</li>
+<li>if elseif else</li>
+<li>gewone for</li>
+<li>while do</li>
+<li>do while</li>
+
+</ul>
+</p>

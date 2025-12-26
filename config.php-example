@@ -1,0 +1,60 @@
+<?php
+
+class config {
+
+    public $timezone = "Europe/Brussels";
+    
+    public $isDev = true;
+    public $app_title= "YOUR_OWN_TITLE";
+    public $SITE="YOUR_OWN_SITE_NAME";
+
+    public $dbconfig = array(
+            'db_type' => "pgsql",
+            'db_host' => "x.x.x.x",
+            'db_port' => 5432,
+            'db_user' => "username",
+            'db_pass' => "password",
+            'db_databasename' => "databasename",
+        );
+    
+    # google auth
+    public $GOOGLE_OAUTH_CLIENT_ID="YOUR_OWN_CLIENT_ID";
+    public $GOOGLE_OAUTH_CLIENT_SECRET="YOUR_OWN_CLIENT_SECRET";
+    public $GOOGLE_OAUTH_REDIRECT_URI = 'YOUR_OWN+SITE_REDIRECT';
+    
+    public $allowed_google_ids = array ( 
+        'xxx', // xxx@xxx.com
+    );
+    
+    public $google_url_redirect_after_succesfull_login = '/manage/profile.php';
+
+// DO NOT FORGET to make the 'cache' folder writable for the webserver
+
+
+// you should not have to change anything below this line    
+
+    public $SITE_URL="";
+    public $SITE_SUBDIR="";
+    
+    function __construct() {
+        $temp = str_replace(substr($_SERVER['QUERY_STRING'],4),"",$_SERVER['REQUEST_URI']);
+        $this->SITE_SUBDIR = $temp;
+        
+        $build_site_url = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'];
+        $setport = "";
+        if($_SERVER['REQUEST_SCHEME'] == 'http' && $_SERVER['SERVER_PORT'] != 80){
+            $build_site_url.=":".$_SERVER['SERVER_PORT'];
+        }
+        if($_SERVER['REQUEST_SCHEME'] == 'https' && $_SERVER['SERVER_PORT'] != 443){
+            $build_site_url.=":".$_SERVER['SERVER_PORT'];
+        }
+        $build_site_url = $this->SITE_SUBDIR;
+        $this->SITE_URL=$build_site_url;
+        
+        $this->app_title = "My own app title";
+        date_default_timezone_set($this->timezone);
+
+    }
+}
+
+$config = new config();

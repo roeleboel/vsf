@@ -1,0 +1,28 @@
+{% extends layouts/layout.html %}
+
+{% block title %}
+{{{ $title }}}
+{% endblock %}
+
+{% block content %}
+<h1>{{{ $title }}}</h1>
+<p>Welcome to the home page, list of colors:</p>
+<ul>
+    {% foreach($colors as $color): %}
+    <li>{{ $color }}</li>
+        {% if($color == "red"): %}
+        <?php echo    " <li>bliebloebla</li>"; ?>
+        {% endif; %}
+        
+    {% endforeach; %}
+</ul>
+
+<ul>
+    {% foreach($colors as $color): %}
+    <li>{{ $color }}</li>
+    {% endforeach; %}
+</ul>
+
+{% include snippets/snippet-demo.html %}
+
+{% endblock %}
